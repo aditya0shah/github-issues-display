@@ -3,59 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px; /* Adjust the gap as needed */
-        }
-
-        .grid-item {
-            list-style: none;
-        }
-    </style>
-    <title>POP</title>
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <title>POP Tasks</title>
 </head>
 <body>
     <div class="grid-container">
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #ef8991";>
             <h2>Mechanical</h2>
-            {% for issue in mech %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in mech %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #d5e88f;">
             <h2>Electrical</h2>
-            {% for issue in elec %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in elec %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #9494d8";>
             <h2>Programming</h2>
-            {% for issue in prog %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in prog %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #8fe89d;">
             <h2>Design</h2>
-            {% for issue in cad %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in cad %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #d7a1ee;">
             <h2>Materials</h2>
-            {% for issue in mats %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in mats %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="grid-item">
+        <div class="grid-item" style="background-color: #d78869;">
             <h2>Exec</h2>
-            {% for issue in biz %}
-                <li>{{ issue }}</li>
-            {% endfor %}
-            {% for issue in pr %}
-                <li>{{ issue }}</li>
-            {% endfor %}
+            <ul>
+                {% for issue in biz %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+                {% for issue in pr %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </body>

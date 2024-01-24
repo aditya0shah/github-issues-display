@@ -1,48 +1,66 @@
-from github import Github
-import pptx
-from pptx.util import Pt, Inches
+from github import Github, Auth
 from flask import Flask, render_template
+from dotenv import load_dotenv
+import os
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
+load_dotenv()
+
+
+auth = Auth.Token(os.getenv('GITHUB_ACCESS_TOKEN'))
 
 app = Flask(__name__)
 
-# auth = Auth.Token("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")
-g = Github()
-prs = pptx.Presentation("public/slide.pptx")
+scheduler = BackgroundScheduler()
+
+g = Github(auth=auth)
+
 repo = g.get_repo("FRC-1294/frc2024")
 
-slide = prs.slides[0]
 
 
 
+def get_issue(team:str):
+    issue_list = []
+    issues = (repo.get_issues(labels=[team,"High Priority"]))
+    for issue in issues:
+        issue_list.append(issue.title)
+    print(issue_list)
+    issues=[]
+    if len(issue_list)<4:
+        issues = (repo.get_issues(labels=[team, "Priority Medium"]))
+    for issue in issues:
+        issue_list.append(issue.title)
+    issues=[]
+    if len(issue_list)<4:
+        issues = (repo.get_issues(labels=[team, "Priority Low"]))
+    for issue in issues:
+        issue_list.append(issue.title)
+    return issue_list
 
-issues = repo.get_issues(labels=["Mechanics","High Priority"])
 
-print(issues)
+def get_all_issues():
+    return (get_issue("Mechanics"), 
+            get_issue("Electronics"), 
+            get_issue("Software"), 
+            get_issue("Design"), 
+            get_issue("Materials"), 
+            get_issue("Buisness"), 
+            get_issue("PR"))
 
-for issue in issues:
-    print (issue.title)
+def refresh_data():
+    global mech, elec, prog, cad, mats, biz, pr
+    mech, elec, prog, cad, mats, biz, pr = get_all_issues()
 
-# left = top = width = height = Inches(1)
-# txBox = slide.shapes.add_textbox(Inches(3.43), Inches(1.86), Inches(2.02), Inches(0.91))
-# tf = txBox.text_frame
-# temp = tf.add_paragraph()
-# temp.text = issues[2].title
-# temp.font.size = Pt(20)
+scheduler.add_job(refresh_data, 'interval', minutes=10)
 
-# try:
-#     p = tf.add_paragraph()
-#     p.text = issues[2].assignee
-#     p.font.size = Pt(30)
-#     prs.save("public/newSlide.pptx")
-# except:
-#     prs.save("public/newSlide.pptx")
-
+scheduler.start()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    refresh_data()
+    return render_template('index.html', mech = mech, elec=elec, prog=prog, cad=cad, mats=mats, biz=biz, pr=pr)
 
 
 if __name__ == '__main__':

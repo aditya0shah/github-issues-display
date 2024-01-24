@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Adjust the gap as needed */
+        }
+
+        .grid-item {
+            list-style: none;
+        }
+    </style>
     <title>POP</title>
 </head>
 <body>
-    <p1>Hello World</p1>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>Mechanical</h2>
+            {% for issue in mech %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+        <div class="grid-item">
+            <h2>Electrical</h2>
+            {% for issue in elec %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+        <div class="grid-item">
+            <h2>Programming</h2>
+            {% for issue in prog %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+        <div class="grid-item">
+            <h2>Design</h2>
+            {% for issue in cad %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+        <div class="grid-item">
+            <h2>Materials</h2>
+            {% for issue in mats %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+        <div class="grid-item">
+            <h2>Exec</h2>
+            {% for issue in biz %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+            {% for issue in pr %}
+                <li>{{ issue }}</li>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

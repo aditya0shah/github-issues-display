@@ -13,7 +13,7 @@
             <h2>Mechanical</h2>
             <ul>
                 {% for issue in mech %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -21,15 +21,15 @@
             <h2>Electrical</h2>
             <ul>
                 {% for issue in elec %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="grid-item" style="background-color: #9494d8";>
-            <h2>Programming</h2>
+            <h2>Software</h2>
             <ul>
                 {% for issue in prog %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -37,7 +37,7 @@
             <h2>Design</h2>
             <ul>
                 {% for issue in cad %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -45,20 +45,33 @@
             <h2>Materials</h2>
             <ul>
                 {% for issue in mats %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="grid-item" style="background-color: #d78869;">
-            <h2>Exec</h2>
+            <h2>Executive</h2>
             <ul>
                 {% for issue in biz %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
                 {% for issue in pr %}
-                    <li>{{ issue }}</li>
+                    <li>{{ issue[0] }} - {{ issue[1] }}</li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class="atn-grid-item" style="background-color: #d7fcff;">
+            <h2>T-Shirt (Required)</h2>
+            <img src="../static/t-shirt.png" id="atn">
+        </div>
+        <div class="atn-grid-item" style="background-color: #d7fcff;">
+            <h2>Attendance {{date.month}}/{{date.day}}</h2>
+            <img src="../static/attendance.png" id="atn">
+        </div>
+        <!-- Comment out when not lunch day brother --->
+        <div class="atn-grid-item" style="background-color: #d7fcff;">
+            <h2>Lunch {{date.month}}/{{date.day}}</h2>
+            <img src="../static/lunch.png" id="atn">
         </div>
     </div>
 </body>

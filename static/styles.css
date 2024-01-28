@@ -11,6 +11,11 @@ body {
     box-sizing: border-box;
 }
 
+#atn {
+    width: 270px;
+    border-radius: 10px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -23,11 +28,22 @@ body {
 }
 
 .grid-item {
-    display: grid;
     border-radius: 10px;
     list-style: none;
     overflow: hidden;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.atn-grid-item {
+    border-radius: 10px;
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2 {
